@@ -17,12 +17,16 @@ struct Opt {
     #[structopt(long)]
     cookie: Option<String>,
 
+    /// SSH options (Name=value)
+    #[structopt(short = "o", number_of_values = 1)]
+    option: Vec<String>,
+
     /// SSH port
     #[structopt(short = "p")]
     port: Option<u16>,
 
     /// SSH proxy jump addresses
-    #[structopt(short = "J")]
+    #[structopt(short = "J", number_of_values = 1)]
     jump: Vec<String>,
 
     /// SSH host
@@ -69,6 +73,10 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     for jump in opt.jump {
         cmd.arg("-J").arg(jump);
+    }
+
+    for option in opt.option {
+        cmd.arg("-o").arg(option);
     }
 
     cmd.arg(opt.host).arg(format!(
