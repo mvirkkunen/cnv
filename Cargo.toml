@@ -1,0 +1,13 @@
+[package]
+name = "cnv"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+structopt = "0.3"
+tempfile = "3.3"
+
+[dependencies.x11rb]
+git = "https://github.com/psychon/x11rb.git"
+ref = "1e5ee18f58f7a335d91b42372f691e53705a2e42"
+features = ["render", "xtest"]
